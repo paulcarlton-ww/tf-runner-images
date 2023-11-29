@@ -21,7 +21,9 @@ RUN find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-
 
 FROM $BASE_IMAGE
 ARG TARGETARCH
-ARG TF_VERSION
+ARG INFRA_EXEC_VERSION
+ARG INFRA_EXEC_URL_PREFIX
+ARG INFRA_EXEC_NAME
 
 # Switch to root to have permissions for operations
 USER root
