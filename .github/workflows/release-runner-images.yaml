@@ -20,6 +20,8 @@ env:
 jobs:
   release-tofu:
     runs-on: ubuntu-latest
+    env:
+      INFRA_EXEC_NAME: tofu
     strategy:
       matrix:
         tofu_version: [1.6.0-alpha5] # 1.6.0-alpha1, 1.6.0-alpha2, 1.6.0-alpha3, 1.6.0-alpha4, 
@@ -42,7 +44,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish multi-arch tf-${{ matrix.runner }} images
+      - name: Publish multi-arch tofu-${{ matrix.runner }} images
         uses: docker/build-push-action@v5
         with:
           push: true
@@ -54,10 +56,10 @@ jobs:
           build-args: |
             BASE_IMAGE=ghcr.io/weaveworks/tf-runner:${{ env.VERSION }}-base
             INFRA_EXEC_VERSION=${{ matrix.tofu_version }}
-            INFRA_EXEC_NAME=tofu
+            INFRA_EXEC_NAME=${{ env.INFRA_EXEC_NAME }}
             INFRA_EXEC_URL_PREFIX=https://github.com/opentofu/opentofu/releases/download/v
           tags: |
-            ghcr.io/paulcarlton-ww/tf-runner:${{ env.VERSION }}-${{ matrix.runner }}-tf-${{ matrix.tofu_version }}
+            ghcr.io/paulcarlton-ww/tofu-runner:${{ env.VERSION }}-${{ matrix.runner }}-tofu-${{ matrix.tofu_version }}
           labels: |
             org.opencontainers.image.title=${{ github.event.repository.name }}
             org.opencontainers.image.description=${{ github.event.repository.description }}
