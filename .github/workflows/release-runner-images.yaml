@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tofu_version: [1.6.0-alpha1, 1.6.0-alpha2, 1.6.0-alpha3, 1.6.0-alpha4, 1.6.0-alpha5]
+        tofu_version: [1.6.0-alpha5] # 1.6.0-alpha1, 1.6.0-alpha2, 1.6.0-alpha3, 1.6.0-alpha4, 
         runner: [base, aws]
     steps:
       - name: Check out
@@ -42,7 +42,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish multi-arch tf-${{ matrix.runner }} MPL images
+      - name: Publish multi-arch tf-${{ matrix.runner }} images
         uses: docker/build-push-action@v5
         with:
           push: true
