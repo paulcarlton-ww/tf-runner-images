@@ -57,7 +57,7 @@ jobs:
             INFRA_EXEC_NAME=tofu
             INFRA_EXEC_URL_PREFIX=https://github.com/opentofu/opentofu/releases/download/v
           tags: |
-            ghcr.io/paulcarlton-ww/tf-runner:${{ env.VERSION }}-${{ matrix.runner }}-tf-${{ matrix.tofu_version }}-mpl
+            ghcr.io/paulcarlton-ww/tf-runner:${{ env.VERSION }}-${{ matrix.runner }}-tf-${{ matrix.tofu_version }}
           labels: |
             org.opencontainers.image.title=${{ github.event.repository.name }}
             org.opencontainers.image.description=${{ github.event.repository.description }}
